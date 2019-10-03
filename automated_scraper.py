@@ -65,7 +65,8 @@ if __name__ == "__main__":
         print(currentCategory)
         
         # Gets Published Date
-        articlePublishedDate = driver.find_element_by_xpath("//input")
+        articlePublishedDate = driver.find_element_by_xpath("//input[@name='details[created]']").get_attribute("value")
+        print(articlePublishedDate)
         
         # Switches to HTML Frame
         driver.switch_to.frame("text_ifr")
@@ -76,47 +77,7 @@ if __name__ == "__main__":
         
         driver.back()
         
-    driver.execute_script("window.open('https://www.adzu.edu.ph/adzu-ak-login/', 'new window')")
-    driver.switch_to.window(driver.window_handles[1])
-    
-    userField = driver.find_element_by_xpath("//input[@name='log' or id='user_login']")
-    userField.send_keys(os.getenv("WP_USERNAME"))
-
-    passwordField = driver.find_element_by_xpath("//input[@name='pwd' or id='user_pass']")
-    passwordField.send_keys(os.getenv("WP_PASSWORD"))
-    
-    loginButton = driver.find_element_by_xpath("//input[@name='wp-submit' or id='wp-submit']")
-    loginButton.click()
-    
-    posts = driver.find_element_by_xpath("//div[contains(text(),'Posts')]")
-    action.move_to_element(posts).perform()
-    
-    addPost = driver.find_element_by_xpath("//a[contains(text(),'Add New')]")
-    addPost.click()
-    
-    # Tells the browser to wait for 10 seconds
-    driver.implicitly_wait(10)
-    
-    # Sets article title
-    postTitle = driver.find_element_by_xpath("//textarea[@id='post-title-0']")
-    postTitle.send_keys(articleTitle)
-    postTitle.send_keys(Keys.TAB)
-    
-    # Sets article content
-    postContent = driver.switch_to.active_element
-    postContent.send_keys(Keys.CONTROL, "v")
-    
-    documentTab = driver.find_element_by_xpath("//button[contains(text(),'Document')]")
-    documentTab.click()
-
-    categoryButton = driver.find_element_by_xpath("//button[contains(text(),'Categories')]")
-    categoryButton.click()
-
-    categorySearch = driver.find_element_by_xpath("//input[@class='editor-post-taxonomies__hierarchical-terms-filter']")
-    categorySearch.send_keys(currentCategory)
-    
-    selectSidebar = category = Select(driver.find_element_by_name("cs_replacement_custom-sidebar"))
-    selectSidebar.select_by_visible_text("Grade School")
         
+   
         
         
