@@ -77,8 +77,12 @@ if __name__ == "__main__":
         content.send_keys(Keys.CONTROL, "c")
         copiedContent = pyperclip.paste()
         print(copiedContent)
+
+        articleList.append({'article': index, 'title': articleTitle, 'published_date': articlePublishedDate, 'category': currentCategory, 'content': copiedContent})
         
         driver.back()
+        
+    print(articleList)
         
         
         
