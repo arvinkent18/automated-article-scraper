@@ -10,6 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as ec
 from dotenv import load_dotenv
+import pyperclip
 import os
 
 if __name__ == "__main__":
@@ -74,8 +75,12 @@ if __name__ == "__main__":
         content.click()
         content.send_keys(Keys.CONTROL, "a")
         content.send_keys(Keys.CONTROL, "c")
+        copiedContent = pyperclip.paste()
+        print(copiedContent)
         
         driver.back()
+        
+        
         
         
    
