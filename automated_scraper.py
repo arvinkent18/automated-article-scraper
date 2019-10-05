@@ -51,7 +51,11 @@ if __name__ == "__main__":
     
     print("Number of articles:{}".format(numberOfArticles))
     
-    for index in range(numberOfArticles):
+    for index in range(1):
+        # Get Article ID
+        articleId = driver.find_element_by_xpath("//table[@class='adminlist']//tbody//tr//td[13]").text
+        print(articleId)
+        
         # Gets Article
         article = driver.find_element_by_xpath("//table[@class='adminlist']//tbody//tr[{}]//td[3]//a".format(index+1))
         article.click()
@@ -78,7 +82,7 @@ if __name__ == "__main__":
         copiedContent = pyperclip.paste()
         print(copiedContent)
 
-        articleList.append({'article': index, 'title': articleTitle, 'published_date': articlePublishedDate, 'category': currentCategory, 'content': copiedContent})
+        articleList.append({'id': articleId, 'article': index, 'title': articleTitle, 'published_date': articlePublishedDate, 'category': currentCategory, 'content': copiedContent})
         
         driver.back()
         
